@@ -38,4 +38,3 @@ EXPOSE 8080
 
 # run application
 ENTRYPOINT ["/winxuu"]
-CMD ["-r","/data"]

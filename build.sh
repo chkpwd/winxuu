@@ -8,7 +8,7 @@ set -o errexit
 tag="${TAG:-latest}"
 
 # if no registry is provided, tag image as "local" registry
-registry="${REGISTRY:-local}"
+registry="${registry:-local}"
 
 # set image name
 image_name="winxuu"
@@ -21,14 +21,14 @@ platforms="linux/amd64"
 platforms+=",linux/arm"
 platforms+=",linux/arm64"
 
-# copy native image to local image repository
+# copy native image to local image registry
 docker buildx build \
                     --build-arg TAG="${tag}" \
                     -t "${registry}/${image_name}:${image_version}" \
                     -f Dockerfile . \
                     --load
 
-# push image to remote registry
+# push image to Hub registry
 docker buildx build --platform "${platforms}" \
                     --build-arg TAG="${tag}" \
                     -t "${registry}/${image_name}:${image_version}" \
