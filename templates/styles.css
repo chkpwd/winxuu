@@ -1,0 +1,44 @@
+body {
+  background: linear-gradient(90deg, rgba(74,58,220,1) 0%, rgba(255,115,140,1) 100%);
+  font-family: 'Helvetica', sans-serif;
+  color: #FFF;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  text-align: center;
+  animation: colorChange 10s infinite;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 50px;
+}
+
+.key-sequence p {
+  color: #FFF;
+  background: #000;
+  display: inline-block;
+  padding: 20px;
+  border-radius: 5px;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  animation: flash 2s infinite;
+}
+
+@keyframes flash {
+  0% {background-color: #000;}
+  50% {background-color: #FFF; color: #000;}
+  100% {background-color: #000;}
+}
+
+/* Define the animation */
+@keyframes colorChange {
+  0%   {color: white;}
+  50%  {color: yellow;}
+  100% {color: white;}
+}
