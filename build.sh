@@ -13,9 +13,6 @@ registry="${registry:-local}"
 # set image name
 image_name="winxuu"
 
-# set image version
-image_version="latest"
-
 # platforms to build for
 platforms="linux/amd64"
 platforms+=",linux/arm"
@@ -25,6 +22,7 @@ platforms+=",linux/arm64"
 docker buildx build \
                     --build-arg TAG="${tag}" \
                     -t "${registry}/${image_name}:${image_version}" \
+                    -t "${registry}/${image_name}:latest" \
                     -f Dockerfile . \
                     --load
 
@@ -32,5 +30,6 @@ docker buildx build \
 docker buildx build --platform "${platforms}" \
                     --build-arg TAG="${tag}" \
                     -t "${registry}/${image_name}:${image_version}" \
+                    -t "${registry}/${image_name}:latest" \
                     -f Dockerfile . \
                     --push
