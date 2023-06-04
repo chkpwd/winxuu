@@ -3,6 +3,7 @@
 
 # exit if a command fails
 set -o errexit
+set -o nounset
 
 # go docker image tag to use
 tag="${TAG:-latest}"
@@ -21,15 +22,17 @@ platforms+=",linux/arm64"
 # copy native image to local image registry
 docker buildx build \
                     --build-arg TAG="${tag}" \
-                    -t "${registry}/${image_name}:${image_version}" \
-                    -t "${registry}/${image_name}:latest" \
+                    -t "local/${image_name}:${image_version}" \
+                    -t "local/${image_name}:latest" \
                     -f Dockerfile . \
                     --load
 
 # push image to Hub registry
-docker buildx build --platform "${platforms}" \
-                    --build-arg TAG="${tag}" \
-                    -t "${registry}/${image_name}:${image_version}" \
-                    -t "${registry}/${image_name}:latest" \
-                    -f Dockerfile . \
-                    --push
+if [ "${push}" == "true" ]; then
+    docker buildx build --platform "${platforms}" \
+                        --build-arg TAG="${tag}" \
+                        -t "${registry}/${image_name}:${image_version}" \
+                        -t "${registry}/${image_name}:latest" \
+                        -f Dockerfile . \
+                        --push
+fi
