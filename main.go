@@ -38,7 +38,7 @@ func main() {
 	fs := http.FileServer(http.FS(folder))
 	http.Handle("/templates/", fs)
 
-	err := http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe(":3389", nil)
 	if err != nil {
 		log.Fatal(err)
 	}
