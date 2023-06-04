@@ -34,7 +34,7 @@ USER nonroot
 COPY --from=build --chown=nonroot:nonroot /src/$app/$app /$app
 
 # listen on an unprivileged port
-EXPOSE 8080
+EXPOSE 3389
 
 # run application
 ENTRYPOINT ["/winxuu"]
