@@ -2,9 +2,12 @@ package main
 
 import (
 	"embed"
+	"fmt"
 	"log"
 	"net/http"
 )
+
+const portNum uint16 = 3389
 
 //go:embed templates/*
 var folder embed.FS //embeds files to a virtual filesystem inside the go binary
@@ -38,7 +41,9 @@ func main() {
 	fs := http.FileServer(http.FS(folder))
 	http.Handle("/templates/", fs)
 
-	err := http.ListenAndServe(":3389", nil)
+	fmt.Printf("Listening on port :%v\n", portNum)
+
+	err := http.ListenAndServe(fmt.Sprintf(":%v", portNum), nil)
 	if err != nil {
 		log.Fatal(err)
 	}
