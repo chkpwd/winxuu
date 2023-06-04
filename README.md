@@ -16,7 +16,7 @@ docker pull chkpwd/winxuu:latest
 
 **Run the container:**
 ```
-docker run -it -p 8080:8080 --rm yourusername/winxuu:latest
+docker run -it -p 8080:8080 --rm chkpwd/winxuu:latest
 ```
 
 You can then access the application at http://localhost:8080.
