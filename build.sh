@@ -3,7 +3,7 @@
 
 # exit if a command fails
 set -o errexit
-set -o nounset
+#set -o nounset
 
 # go docker image tag to use
 tag="${TAG:-latest}"
