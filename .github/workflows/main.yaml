@@ -21,9 +21,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Get Release Version
-        run: echo "RELEASE_VERSION=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
@@ -47,5 +44,5 @@ jobs:
           platforms: linux/amd64,linux/arm64,linux/arm
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:{{ env.RELEASE_VERSION }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.event.release.tag_name }}
           provenance: false
