@@ -1,8 +1,7 @@
 ARG app=winxuu
 
 # create build stage
-ARG TAG
-FROM --platform=$BUILDPLATFORM golang:$TAG AS build
+FROM --platform=$BUILDPLATFORM golang:1.20 AS build
 ARG app
 
 # install dependencies
