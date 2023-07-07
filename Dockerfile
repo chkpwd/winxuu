@@ -1,13 +1,14 @@
 ARG app=winxuu
 
 # create build stage
-FROM --platform=$BUILDPLATFORM golang:1.20.5-bullseye AS build
+FROM --platform=$BUILDPLATFORM golang:alpine AS build
 ARG app
 
 # install dependencies
-RUN apt-get update \
-    && apt-get install -y \
-    upx
+RUN apk update \
+    && apk add \
+    upx \
+    git
 
 # clone
 RUN git clone https://github.com/chkpwd/$app /src/$app
