@@ -10,6 +10,12 @@ on:
         description: 'Push image [true|false]'
         required: false
         default: 'false'
+
+# Sets permissions of the GITHUB_TOKEN
+permissions:
+  packages: write
+  contents: read
+
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository_owner }}/winxuu
