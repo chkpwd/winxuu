@@ -1,6 +1,9 @@
 name: Build/Push Image
 
 on:
+  push:
+    branches: [ 'main' ]
+    tags: [ '*' ]
   release:
     types: [published]
   pull_request:
@@ -51,7 +54,8 @@ jobs:
         with:
           push: ${{ github.event.inputs.push != 'false' }}
           platforms: linux/amd64,linux/arm64,linux/arm
-          tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest,
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.event.release.tag_name }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           provenance: false
