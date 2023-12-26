@@ -2,17 +2,7 @@ name: Build/Push Image
 
 on:
   push:
-    branches: [ 'main' ]
     tags: [ '*' ]
-  release:
-    types: [published]
-  pull_request:
-  workflow_dispatch:
-    inputs:
-      push:
-        description: 'Push image [true|false]'
-        required: false
-        default: 'false'
 
 # Sets permissions of the GITHUB_TOKEN
 permissions:
