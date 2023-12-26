@@ -24,6 +24,10 @@ h1 {
   margin-bottom: 50px;
 }
 
+ul {
+  list-style-type: none;
+}
+
 .key-sequence p {
   color: #FFF;
   background: #000;
